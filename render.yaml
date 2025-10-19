@@ -9,7 +9,7 @@ services:
     envVars:
       - key: RAILS_ENV
         value: production
-      - key: secret_key_base
+      - key: SECRET_KEY_BASE
         value: BHB0HV/mKI3+XWEQjmuOmpQX3ZEgYK+J6yFW2eg7aO4=
       - key: RAILS_MASTER_KEY
         value: "73484dfa0937b0b20d26bbb9a73397de"
