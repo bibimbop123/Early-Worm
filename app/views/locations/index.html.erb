@@ -1,0 +1,86 @@
+<div class="container-fluid min-vh-100 d-flex flex-column" style="background: linear-gradient(180deg, #FFF9E5, #FFE0A3); font-family: 'Poppins', sans-serif;">
+  
+  <!-- Header -->
+  <header class="text-center mt-5">
+    <h1 class="display-3 fw-bold text-warning" style="text-shadow: 2px 2px 8px rgba(255,165,0,0.4);">
+      🌅 EarlyWorm <span class="text-muted">🪱</span>
+    </h1>
+    <p class="lead text-secondary mb-0">
+      Find today's sunrise and sunset anywhere on Earth.
+    </p>
+  </header>
+
+  <!-- Animated GIF -->
+  <div class="d-flex justify-content-center mt-4">
+    <%= image_tag "earlyworm.gif", alt: "earlyworm", class: "img-fluid earlyworm", style: "max-height: 400px; max-width: 90%;" %>
+  </div>
+
+  <!-- Centered Form Card -->
+  <div class="d-flex flex-grow-1 justify-content-center align-items-center px-3 my-4">
+    <div class="card shadow-lg border-0 w-100" style="max-width: 700px; border-radius: 1.5rem; background: #fff8f0; transition: transform 0.3s ease;">
+      <div class="card-body p-4">
+        <%= form_with url: location_path, method: :get, local: true, class: "d-flex flex-column flex-md-row gap-2 align-items-center justify-content-center" do %>
+          <%= text_field_tag :q, nil, 
+                placeholder: "Chicago, IL, USA", 
+                class: "form-control form-control-lg text-center border-2 border-warning rounded-pill shadow-sm flex-grow-1",
+                style: "font-size: 1.1rem; transition: box-shadow 0.3s ease;" %>
+
+          <%= submit_tag "☀️ Show Sunrise & Sunset ☀️", 
+                class: "btn btn-warning btn-lg fw-semibold rounded-pill shadow-sm mt-2 mt-md-0 flex-shrink-0",
+                style: "white-space: nowrap; background: linear-gradient(90deg, #ffc107, #ffca2c); transition: transform 0.2s ease, box-shadow 0.2s ease;" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flash Alert -->
+  <% if flash[:alert] %>
+    <div class="d-flex justify-content-center mt-3">
+      <p class="alert alert-danger text-center fw-semibold fs-5" style="animation: fadeIn 0.5s;">
+        ⚠️ <%= flash[:alert] %>
+      </p>
+    </div>
+  <% end %>
+
+  <!-- Footer -->
+  <footer class="mt-4 text-center small text-muted" style="background: linear-gradient(to right, #ffa500, #ffeb99); -webkit-background-clip: text; color: transparent;">
+    <em>Because even worms need to know when to rise early. 🪱</em>
+  </footer>
+
+</div>
+
+<!-- Inline CSS for animations -->
+<style>
+  /* Earlyworm GIF bounce */
+  .earlyworm {
+    animation: bounce 2s infinite alternate;
+  }
+
+  @keyframes bounce {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-15px); }
+  }
+
+  /* Card hover lift */
+  .card:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Text field focus glow */
+  .form-control:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+  }
+
+  /* Submit button hover */
+  .btn-warning:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  /* Flash alert fade-in */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

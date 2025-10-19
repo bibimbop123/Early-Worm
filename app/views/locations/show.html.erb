@@ -1,0 +1,75 @@
+<div class="container-fluid min-vh-100 d-flex flex-column text-center" style="background: linear-gradient(180deg, #FFF9E5, #FFE0A3); font-family: 'Poppins', sans-serif;">
+
+  <!-- Header -->
+  <header class="mt-4 mb-4">
+    <h1 class="display-4 fw-bold text-warning" style="text-shadow: 2px 2px 8px rgba(255,165,0,0.4);">
+      🌅 EarlyWorm <span class="text-muted">🪱</span>
+    </h1>
+  </header>
+
+  <!-- Centered Card -->
+  <div class="d-flex justify-content-center align-items-center flex-grow-1 px-3">
+    <div class="card shadow-lg border-0 w-100" style="max-width: 520px; border-radius: 1.5rem; background: #fff8f0; transition: transform 0.3s ease;">
+      <div class="card-body p-4">
+
+        <h2 class="fw-semibold text-dark mb-4 text-center" style="font-size: 1.8rem;">
+          <%= @location %>
+        </h2>
+
+        <div class="list-group list-group-flush text-center">
+          <div class="list-group-item border-0 bg-transparent fs-5 mb-2">
+            🌞 <strong>Sunrise:</strong> <%= @sunrise.strftime("%I:%M %p") %>
+          </div>
+
+          <div class="d-flex justify-content-center mb-3">
+            <%= image_tag "earlybird.gif", alt: "earlybird", class: "img-fluid earlybird", style: "max-height: 250px; max-width: 80%;" %>
+          </div>
+
+          <div class="list-group-item border-0 bg-transparent fs-5 mb-2">
+            🌇 <strong>Sunset:</strong> <%= @sunset.strftime("%I:%M %p") %>
+          </div>
+
+          <div class="list-group-item border-0 bg-transparent fs-5 mb-2">
+            🕒 <strong>Daylight Duration:</strong> <%= Time.at(@day_length.to_i).utc.strftime("%Hh %Mm") %>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+          <%= link_to "🔍 Search another location", root_path, 
+                class: "btn btn-warning btn-lg fw-semibold rounded-pill shadow-sm px-4",
+                style: "background: linear-gradient(90deg, #ffc107, #ffca2c); transition: transform 0.2s ease, box-shadow 0.2s ease;" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-4 text-center small text-muted" style="background: linear-gradient(to right, #ffa500, #ffeb99); -webkit-background-clip: text; color: transparent;">
+    <em>Rise early, nap wisely. 🌤️</em>
+  </footer>
+
+</div>
+
+<!-- Inline CSS for animations -->
+<style>
+  /* Earlybird GIF float */
+  .earlybird {
+    animation: float 2.5s infinite alternate;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-12px); }
+  }
+
+  /* Card hover lift */
+  .card:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Button hover */
+  .btn-warning:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+</style>
